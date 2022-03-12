@@ -25,8 +25,8 @@ with open (file_to_load, "r") as election_data:
 file_to_save = os.path.join("analysis", "election_analysis.txt")
 #using open() function with the "W" mode - this is how to write to a file
 #using with statement to open file as text file
-with open (file_to_save, "w") as txt_file:
-    txt_file.write("Counties in the Election\n-------------------------\nArapahoe\nDenver\nJefferson")
+#with open (file_to_save, "w") as txt_file:
+    #txt_file.write("Counties in the Election\n-------------------------\nArapahoe\nDenver\nJefferson")
 #open election results and read
 with open (file_to_load) as election_data:
     #to do Read and analyze data 
@@ -46,29 +46,46 @@ with open (file_to_load) as election_data:
             candidate_votes[candidate_name] = 0
             #add vote to candidate
         candidate_votes[candidate_name] +=1
+with open(file_to_save, "w") as txt_file:
+    election_results = (
+        f"\nElection Results\n"
+        f"------------------------\n"
+        f"Total Votes: {total_votes:,}\n"
+        f"------------------------\n")
+    print(election_results, end="")
+    txt_file.write(election_results)
 #print candidate list
-print(candidate_options)
+#print(candidate_options)
 #3. print total votes
-print(total_votes)
+#print(total_votes)
 #print candidate votes
-print(candidate_votes)
+#print(candidate_votes)
 # create for loop for calculating vote% for each candidate.
-for candidate_name in candidate_votes:
-    votes = candidate_votes[candidate_name]
-    vote_percentage = (float(votes) / float(total_votes)) * 100
-    #add :.2f (makes float to 2 decimal places rather than continuous)
-    print(f"{candidate_name}: received {vote_percentage:.2f}% of the vote.")
-    print(f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
-    #conditional statement to determine winner by popular vote
-    if (votes > winning_count) and (vote_percentage > winning_percentage):
-        winning_count = votes
-        winning_percentage = vote_percentage
-        winner = candidate_name
-        #print out each name, vote count, and percentage of votes to terminal
-winning_candidate_summary = (
-f"-----------------------------\n"
-f"Winner: {winner}\n"
-f"winning Vote Count: {winning_count:,}\n"
-f"Winning Percentage: {winning_percentage:.1f}%\n"
-f"------------------------------\n")
-print (winning_candidate_summary)
+    for candidate_name in candidate_votes:
+        votes = candidate_votes[candidate_name]
+        vote_percentage = (float(votes) / float(total_votes)) * 100
+        #add :.2f (makes float to 2 decimal places rather than continuous)
+        print(f"{candidate_name}: received {vote_percentage:.2f}% of the vote.")
+        #conditional statement to determine winner by popular vote
+        candidate_results = (
+                f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
+            #print candidate results
+        print (candidate_results)
+            #save results to text file
+        txt_file.write(candidate_results)
+        if (votes > winning_count) and (vote_percentage > winning_percentage):
+            winning_count = votes
+            winning_percentage = vote_percentage
+            winner = candidate_name
+            #print out each name, vote count, and percentage of votes to terminal
+    #print winning candidate
+    winning_candidate_summary = (
+        f"-----------------------------\n"
+        f"Winner: {winner}\n"
+        f"winning Vote Count: {winning_count:,}\n"
+        f"Winning Percentage: {winning_percentage:.1f}%\n"
+        f"------------------------------\n")
+    print (winning_candidate_summary)
+    #print winner to file
+    txt_file.write(winning_candidate_summary)
+
