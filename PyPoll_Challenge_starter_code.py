@@ -104,9 +104,9 @@ with open(file_to_save, "w") as txt_file:
 
 
          # 6d: Print the county results to the terminal.
-        print(f"{county_name}: had {county_percentage:.2f}% of the vote.")
+        print(f"{county_name}: {county_percentage:.1f}% ({(county_votes[county_name])})\n")
         county_results = (
-            f"{county_name}: had {county_percentage:.1f}% of the vote.\n")
+            f"{county_name}: {county_percentage:.1f}% ({(county_votes[county_name])})\n")
          # 6e: Save the county votes to a text file.
         txt_file.write(county_results)
          # 6f: Write an if statement to determine the winning county and get its vote count.
