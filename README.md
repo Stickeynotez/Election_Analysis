@@ -31,4 +31,5 @@ Winning Candidate:
 
 One change that can be made to make this script viable for any election, would be to change the text output statements to fit the election that is happening. 
 Another change would be the amounts of candidates may become far too overwhelming to view for an end user. If the script was modified to reflect the top 5 or 10 candidates for an election (if a nationwide election were to occur), then the script would be far more effective and easy to use for the end user.
+
 ![image](https://user-images.githubusercontent.com/99559096/158041282-3e8fd543-d080-485d-bd75-b865901fe0ed.png)
